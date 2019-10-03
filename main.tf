@@ -13,3 +13,10 @@ resource "aws_s3_bucket" "b" {
     Environment = "PROD"
   }
 }
+
+resource "aws_s3_bucket_object" "object_s3" {
+  bucket = "${aws_s3_bucket.b.id}"
+  key    = "testBucket.txt"
+  source = "arquivo.txt" 
+}
+
