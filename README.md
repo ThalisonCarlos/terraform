@@ -6,7 +6,7 @@ variable "name" {
   default = "value"
 }
 
-Foi criado também scripts de ambientes de dev e prod, que podem ser utilizados atraves dos comandos abaixo.
+Foi criado também scripts de ambientes de dev e prod, que podem ser utilizados atraves dos comandos abaixo, esses scripts contem valores de variaveis que tem preferencia sobre os valores default, e sua extensão deve ser tfvars.
 
 Comando utilizados:
 
