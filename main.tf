@@ -1,33 +1,14 @@
 provider "aws" {
-  region     = "us-east-1"
-  access_key = "xxxxxxxxxxx"
-  secret_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  region     = "${var.region}"
+  access_key = "${var.accessKey}"
+  secret_key = "${var.secretKey}"
 }
 
-resource "aws_s3_bucket" "b" {
-  bucket = "my-tf-test-bucket-1231231231231312312"
-  acl    = "private"
+resource "aws_instance" "web" {
+  ami = "${var.ami}"
+  instance_type = "${var.type}"
 
-  tags = {
-    Name        = "My bucket customizado"
-    Environment = "PROD"
-  }
+  tags = "${var.tags}"
 }
-
-resource "aws_s3_bucket_object" "object_s3" {
-  bucket = "${aws_s3_bucket.b.id}"
-  key    = "testBucket.txt"
-  source = "arquivo.txt" 
-  etag = "${filemd5("arquivo.txt")}"
-}
-
-output "object_s3" {
-  value = "${aws_s3_bucket_object.object_s3.id}"
-}
-
-output "etag" {
-  value = "${aws_s3_bucket_object.object_s3.etag}"
-}
-
 
 
