@@ -1,40 +1,16 @@
 
 provider "aws" {
-  region = "us-east-1"
-}
-
-resource "random_id" "bucket" {
-  byte_length = 8
-}
-
-resource "random_id" "bucket-2" {
-  byte_length = 4
+  region = "${var.region}"
 }
 
 
-module "buket" {
-  source = "./s3"
+module "bucket" {
 
-  create_object = true
-   
-  name = "my-bucket-${random_id.bucket.hex}"
+  source = "git@github.com:ThalisonCarlos/terraform.git//s3?ref=Aula6-modules"
+
+  name = "${var.name_s3}-${var.env}"
 
   versioning = true
 
-  object_key = "files/${random_id.bucket.dec}.txt"
-
-  object_source = "arquivo.txt"
-
-  tags = {
-    "Name" = "Meu Bucket de Anotações"
-  }
-  
+  tags = "${var.tags}"
 }
-
-module "buket-2" {
-  source = "./s3"
-
-  name = "my-bucket-${random_id.bucket-2.hex}"
-  
-}
-
