@@ -10,10 +10,15 @@ terraform {
     region = "us-east-1"
   }
 }
+data "aws_ami" "ubuntu" {
+  owners      = ["amazon"]
+  most_recent = true
+  name_regex  = "ubuntu"
+}
 
 resource "aws_instance" "web" {
 
-  ami = "${var.image_ec2}"
+  ami = "${data.aws_ami.ubuntu.id}"
 
   instance_type = "${var.type_ec2}"
 

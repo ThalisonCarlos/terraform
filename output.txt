@@ -1,0 +1,4 @@
+i-0c7f80597f1ee899a
+arn:aws:ec2:us-east-1:428944976621:instance/i-0c7f80597f1ee899a
+ami-0c535eb8c5a80b962
+ami-0c535eb8c5a80b962
